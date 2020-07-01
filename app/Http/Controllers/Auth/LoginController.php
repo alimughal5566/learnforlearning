@@ -49,14 +49,23 @@ class LoginController extends Controller
 
     public function login(LogInRequest $request)
     {
+
         $user = User::where('email',$request->email)->first();
+
         $email = $user['email'];
         $password = $user['password'];
         $requestPassword=$request->password;
         if (Hash::check($requestPassword,$password) && $email)
         {
-            Auth::login($user);
-            return $this->redirectTo();
+            if ($user['approved_at']!=""){
+                Auth::login($user);
+                return $this->redirectTo();
+            }
+            else{
+                return redirect()->back()->with('message','your email needed to approve')->withInput(['email'=>$email]);
+
+            }
+
         }
         else{
             return redirect()->back()->with('message','Invalid Email or Password')->withInput(['email'=>$email]);

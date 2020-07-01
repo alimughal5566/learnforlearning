@@ -78,10 +78,16 @@ class UserController extends Controller
             }
 
     }
-public function test(){
+
+    public function test()
+    {
 
         return view('auth.test');
-}
+    }
+
+
+
+
 
 
 

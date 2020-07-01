@@ -86,6 +86,9 @@
                                     <div style="width:100%;">
                                         <h3 class="level-heading" >Login</h3>
                                     </div>
+                                    @if(session('message'))
+                                        <p class="alert alert-success text-dark">{{session('message')}}</p>
+                                    @endif
                                     <div style="width:100%;">
                                         <input type = "email" name="email" placeholder="Email Address">
                                     </div>

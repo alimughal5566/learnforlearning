@@ -110,7 +110,12 @@
                                 <p>{{ __('AllStudents') }}</p>
                             </a>
                         </li>
-
+                        <li @if ($pageSlug == 'newusers') class="active " @endif>
+                            <a href="{{ route('newUsers') }}">
+                                <i class="tim-icons icon-single-02"></i>
+                                <p>{{ __('Newusers') }}</p>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </li>

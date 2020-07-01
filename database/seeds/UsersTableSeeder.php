@@ -20,8 +20,8 @@ class UsersTableSeeder extends Seeder
             'email_verified_at' => now(),
             'type' => 'admin',
             'password' =>Hash::make('123123123'),
-            'admin' => 1,
-            'approved_at' => now(),
+//            'admin' => 1,
+//            'approved_at' => now(),
             'created_at' =>Carbon::now(),
             'updated_at' =>Carbon::now(),
         ]);

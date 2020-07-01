@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['Public'], function (){
 
+
     Route::get('/test','UserController@test')->name('test');
 
 });
@@ -27,7 +28,7 @@ Route::group(['Public'], function (){
 
 Route::group(['Public'], function () {
 
-
+    Route::get('/', function () {return view('welcome');})->name('homee');
     Route::get('/for-parents','PageController@forParent')->name('parents');
     Route::get('/for-teachers','PageController@forTeachers')->name('teachers');
     Route::get('/for-students','PageController@forStudents')->name('students');
@@ -66,7 +67,7 @@ Route::group(['Public'], function () {
     Route::post('/teacher-subjects','TescherController@teacherSubjects')->name('teacherSubjects');
     Route::post('/get-teacher-profile','TescherController@getteacherProfile')->name('getteacherProfile');
 
-                });
+    });
 });
 
 
@@ -75,7 +76,10 @@ Route::group(['Public'], function () {
 
 
 
-Auth::routes();
+//Auth::routes();
+Auth::routes(['verify' => true]);
+
+
 
 
 
@@ -84,26 +88,6 @@ Auth::routes();
 Route::group(['private'], function () {
     //*********** if call inAuthorized route*************
     Route::get('/denied', function () {return view('404');})->name('denied');
-
-
-
-
-    Route::middleware(['auth'])->group(function () {
-        Route::get('/approval', 'HomeController@approval')->name('approval');
-
-        Route::middleware(['approved'])->group(function () {
-            Route::get('/', function () {return view('welcome');})->name('homee');
-            Route::get('/home', 'HomeController@index')->name('home');
-        });
-
-        Route::middleware(['admin'])->group(function () {
-            Route::get('/users', 'UserController@index')->name('admin.users.index');
-            Route::get('/users/{user_id}/approve', 'UserController@approve')->name('admin.users.approve');
-        });
-    });
-
-
-
 
     Route::group(['Admin', 'middleware' => 'CheckUserType:' . 'admin'], function () {
 
@@ -114,9 +98,12 @@ Route::group(['private'], function () {
                 Route::get('/for-Parent','PageController@forParents')->name('forParents');
                 Route::get('/for-Student','PageController@forStudent')->name('forStudent');
                 Route::get('/for-Teacher','PageController@forTeacher')->name('forTeacher');
+                Route::get('/new-users','PageController@newUsers')->name('newUsers');
+                Route::get('/admin-users-approve{id}','PageController@adminUsersApprove')->name('adminUsersApprove');
                 Route::get('/schedule-Poster','PageController@schedulePoster')->name('schedulePoster');
                 Route::get('/all-students','PageController@allStudents')->name('allStudents');
                 Route::get('/all-teachers','PageController@allTeachers')->name('allTeachers');
+                Route::get('/new-users','PageController@newUsers')->name('newUsers');
                 Route::get('/Userid/{id}','PageController@Userid')->name('Userid');
 
                 //                        how-it-works

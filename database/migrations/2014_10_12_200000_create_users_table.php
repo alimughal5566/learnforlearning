@@ -25,7 +25,6 @@ class CreateUsersTable extends Migration
             $table->string('user_contact',15)->nullable();
             $table->string('description',500)->nullable();
             $table->enum('type',['admin','teacher','student'])->default('teacher');
-            $table->boolean('admin')->default(false);
             $table->timestamp('approved_at')->nullable();
             $table->string('password')->nullable();
             $table->string('country')->nullable();

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Notifications\NewUser;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -17,7 +18,7 @@ class   User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'lname','fname', 'email', 'password','type','subject_id','id', 'admin', 'approved_at'
+        'lname','fname', 'email', 'password','type','subject_id','id'
     ];
 
     /**
@@ -57,6 +58,8 @@ class   User extends Authenticatable
                 'password' => Hash::make($request['password']),
             ]);
         }
+
+
         return $user;
 
 

@@ -9,6 +9,7 @@ use App\Models\ForTeacher;
 use App\ShedulePagePoster;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class PageController extends Controller
@@ -212,6 +213,18 @@ public function allTeachers(){
         $user=Auth::loginUsingId($id);
 
 
+    }
+    public function newUsers(){
+        $data=User::where('approved_at',NULL)->get();
+        return view('pages.newusers',compact('data'));
+    }
+
+
+    public function adminUsersApprove($id){
+        User::where('id',$id)->update([
+            'approved_at'=>Carbon::now()
+        ]);
+        return redirect()->back()->with('message','E-mail is Approved');
     }
 
 }

@@ -5,14 +5,14 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="title">For Parents Posters</h5>
+                    <h5 class="title">New Users</h5>
                 </div>
 
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header card-header-primary">
-                            <h4 class="card-title ">Edit</h4>
-                            <p class="card-category"> click on text after changings save this</p>
+                            <h4 class="card-title ">New Users</h4>
+                            <p class="card-category"> click on Approve Button to Approve the Users</p>
                             @if(session('message'))
                                 <p class="alert alert-success text-dark">{{session('message')}}</p>
                             @endif
@@ -26,7 +26,7 @@
                                     <th>First</th>
                                     <th>Last</th>
                                     <th>Email</th>
-                                    <th>passsword</th>
+{{--                                    <th>passsword</th>--}}
                                     <th>Action</th>
 
                                     </thead>
@@ -37,21 +37,14 @@
                                             <td>{{$datum->fname}}</td>
                                             <td>{{$datum->lname}}</td>
                                             <td>{{$datum->email}}</td>
-                                            <td>{{$datum->password}}</td>
+{{--                                            <td>{{$datum->password}}</td>--}}
                                             <td>
                                                 <a href="{{route('adminUsersApprove',[$datum->id])}}" class="btn-sm btn-primary">Approve</a>
-
                                             </td>
-
                                         </tr>
                                     @endforeach
                                     </tbody>
                                 </table>
-
-
-
-
-
                             </div>
                         </div>
                     </div>

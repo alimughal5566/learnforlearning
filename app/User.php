@@ -7,6 +7,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class   User extends Authenticatable
 {
@@ -18,8 +19,13 @@ class   User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'lname','fname', 'email', 'password','type','subject_id','id'
+        'lname','fname', 'email', 'password','type','subject_id','id','fof_session','description','favorite_subject','country'
     ];
+    public $email;
+//    public function __construct($email)
+//    {
+//        $this->email=$email;
+//    }
 
     /**
      * The attributes that should be hidden for arrays.
@@ -57,9 +63,17 @@ class   User extends Authenticatable
                 'type' => 'student',
                 'password' => Hash::make($request['password']),
             ]);
+
+
         }
 
-
+        $data =["msg"=>" please verify your self" ,"userId"=>$user->id];
+        $this->email=$request['email'];
+        Mail::send(['html'=>'email'], $data, function($msg) {
+            $msg->to($this->email);
+//            $msg->attach(route('adminUsersApprove',$user['id']));
+            $msg->subject('User Register Request');
+        });
         return $user;
 
 

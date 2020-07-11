@@ -14,44 +14,44 @@
                {{-- first-column --}}
                <div class="col-md-6 col-sm-12 col-xs-12">
                    <div class="row">
-                       <div class="col-12">
-                           <img src="{{asset('asset/images/student-lesson-page/students-geography.png')}}">
-                        </div>
-                   </div>                   
+                       <div class="col-12 media">
+                           <iframe width="420" height="345" src="https://www.youtube.com/embed/{{$lesssonDetail['0']['video']}}" allowfullscreen>
+                           </iframe>
+                       </div>
+                   </div>
                </div>
                {{-- second-column --}}
                <div class="col-md-6 col-sm-12 col-xs-12">
                     <div class="row">
                         <div class="col-md-9 col-sm-12 col-xs-12">
-                            <h4>Babylonian Civilization</h4>
-                            <p>Live Date: 23/04/2020<br>
-                                18:00 - 1h</p>
+                            <h4>{{$lesssonDetail['0']['title']}}</h4>
+                            <p>Live Date:{{$lesssonDetail['0']['date']}}<br>
+                                Time:{{$lesssonDetail['0']['time']}}</p>
                             <div class="row">
                                 <div class="col-md-2">
-                                    <img src="{{asset('asset/images/student-lesson-page/profile-pic.png')}}">
+                                    <img src="{{url('/storage/images/'.$lesssonDetail['0']['teacher_thumbnail'])}}">
                                 </div>
                                 <div class="col-md-5">
-                                    <p>John Madden</p> 
+                                    <p>{{$lesssonDetail['0']['teacher_fname']}}-{{$lesssonDetail['0']['teacher_lname']}}</p>
                                 </div>
                                 <div class="col-md-5">
-                                    <a href="#" class="profile-btn" style="">VIEW PROFILE</a>
- 
+                                    <a href="{{route('teacherProfile',$lesssonDetail[0]['user_id'])}}" class="profile-btn" style="">VIEW PROFILE</a>
+
                                 </div>
-                            </div>                               
+                            </div>
                         </div>
-                        
+
                         <div class="col-md-3 col-sm-12 col-xs-12">
                             <img src="{{asset('asset/images/student-lesson-page/geography.jpg')}}">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            <p data-animation="fadeInUp" data-delay="1.5s">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                            <p data-animation="fadeInUp" data-delay="1.5s">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                            <p data-animation="fadeInUp" data-delay="1.5s">{{$lesssonDetail['0']['description']}}</p>
                             <a data-animation="fadeInUp" data-delay="2s" class="main-slider-btn" href="#" id="addtocalen-btn">ADD TO CALENDAR</a>
                         </div>
                     </div>
-                
+
                </div>
 
            </div>
@@ -72,7 +72,7 @@
                     <div class="row">
                         <div class="col-6">
                             <div class="row">
-                                
+
                                 <div class="col-6">
                                     Document2.pdf
                                 </div>
@@ -83,7 +83,7 @@
                         </div>
                         <div class="col-6">
                             <div class="row">
-                                
+
                                 <div class="col-6">
                                     Document2.pdf
                                 </div>
@@ -97,7 +97,7 @@
                     <div class="row">
                         <div class="col-6">
                             <div class="row">
-                                
+
                                 <div class="col-6">
                                     Document2.pdf
                                 </div>
@@ -108,7 +108,7 @@
                         </div>
                         <div class="col-6">
                             <div class="row">
-                                
+
                                 <div class="col-6">
                                     Document2.pdf
                                 </div>
@@ -120,14 +120,14 @@
                     </div>
                 </div>
                 <div class="col-6">
-                    
+
                 </div>
             </div>
         </div>
     </section>
 
     <section>
-        <div class="container">             
+        <div class="container">
             <h3 class="level-heading">Ask a question</h3>
             <form action="" method="GET">
             <div class="row">
@@ -140,7 +140,7 @@
             </div>
             </form>
         </div>
-        
+
     </section>
 
 
@@ -150,7 +150,7 @@
                 <div class="col-6"><h5>User Reviews</h5></div>
                 <div class="col-6"><h5>User Reviews</h5></div>
             </div>
-            
+
             <hr>
             <div class="card">
                 <div class="card-body">
@@ -166,7 +166,7 @@
                                 <span class="float-right"><i class="text-warning fa fa-star"></i></span>
                                 <span class="float-right"><i class="text-warning fa fa-star"></i></span>
                                 <span class="float-right"><i class="text-warning fa fa-star"></i></span>
-        
+
                            </p>
                            <div class="clearfix"></div>
                             <p>Lorem Ipsum is simply dummy text of the pr make  but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
@@ -198,13 +198,13 @@
             </div>
         </div>
     </section>
-    
+
     <section id="course-part" class="pt-115 pb-115 bg_cover gray-bg" style="background-image: url(images/course/course-shape.png)"> <section id="course-part" class="pt-115 pb-115 bg_cover gray-bg" style="background-image: url(images/course/course-shape.png)">
         <div class="container">
             <div class="row">
                 <div class="col-12">
                     <h3 class="level-heading-courses">SIMILAR LESSONS</h3>
-                </div>         
+                </div>
             </div> <!-- row -->
             <div class="row">
                 <div class="col-lg-4">

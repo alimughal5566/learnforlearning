@@ -15,7 +15,9 @@
         "laravel-frontend-presets/black-dashboard": "^1.0",
         "laravel/framework": "^7.0",
         "laravel/tinker": "^2.0",
-        "laravel/ui": "^2.0"
+        "laravel/ui": "^2.0",
+        "merujan99/laravel-video-embed": "dev-master",
+        "pusher/pusher-php-server": "^4.1"
     },
     "require-dev": {
         "facade/ignition": "^2.0",

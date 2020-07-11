@@ -1,5 +1,7 @@
 @extends('layouts.master')
+
 @section('title','level')
+
 @section('content')
 
     <!--====== Bootstrap css ======-->
@@ -32,16 +34,17 @@
                     <div class="col-md-12">
                         <h3 class="level-heading" >WHAT SUBJECTS DO YOU WANT TO STUDY?</h3>
                     </div>
-                    @foreach($key['subjects'] as $sub)
+                    @foreach($subjects as $sub)
                     <div class="col-md-6 d-flex align-items-center justify-content-center">
                         <div class="form-parts">
 
                             <label class="container-checkbox" >{{$sub->name}}
-                            <input type="checkbox" value="{{$sub->id}}" name="subjects[]">
+                            <input type="checkbox" value="{{$sub->subject_id}}" name="subjects[]">
                                     <span class="checkmark"></span>
                                 </label>
                         </div>
                     </div>
+                        <input type="hidden" name="level_id" value="{{$sub->level_id}}">
                     @endforeach
                     <div class="col-md-6 d-flex align-items-center justify-content-center">
                     </div>
@@ -84,13 +87,13 @@
 
                     <div class="modal-body">
                         <div>
-                            <select name="subjects[]" id="" class="form-control">
-                                <option value="" >All Subjects</option>
-                                @if(isset($key['others']))
-                                    @foreach($key['others'] as $sub)
-                                        <option value="{{$sub->id}}">{{$sub->name}}</option>
-                                    @endforeach
-                                @endif
+{{--                            <select name="subjects[]" id="" class="form-control">--}}
+{{--                                <option value="" >All Subjects</option>--}}
+{{--                                @if(isset($key['others']))--}}
+{{--                                    @foreach($key['others'] as $sub)--}}
+{{--                                        <option value="{{$sub->id}}">{{$sub->name}}</option>--}}
+{{--                                    @endforeach--}}
+{{--                                @endif--}}
                             </select>
                             <input type="text" id="subject" class="form-control">
 
@@ -101,7 +104,7 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="saveSubject({{$key['subjects'][0]->level_id}})">Submit</button>
+{{--                        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="saveSubject({{$subjects->level_id}})">Submit</button>--}}
                     </div>
                 </div>
 
@@ -109,6 +112,26 @@
         </div>
         <input type="hidden"name="user_id" value="{{$user_id}}">
     </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     <script>
         function saveSubject(lever_id) {

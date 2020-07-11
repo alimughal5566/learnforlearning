@@ -152,6 +152,7 @@ section#filter-search-form {
 
 section#course-part {
     padding-top: 13px;
+    background-color: #036893;
 }
 
 .stu-home-dash-head-div{
@@ -280,7 +281,22 @@ background-color: #facd5f;
     
 color: white;
     
-text-align: left;
-    
+text-align: left;    
 padding-bottom: 23px;
+}
+
+#carousel-achieve .container hr {
+    border-top: 1.5px solid #006796;
+    margin-top: inherit;
+    width: 412px;
+}
+
+
+
+.stu-home-dash-head-head {
+    font-weight: 700;
+    color: white;
+    font-size: 22px;
+    letter-spacing: 2px;
+    text-align: left;
 }

@@ -6,6 +6,7 @@ use App\Howitwork;
 use App\Models\ForParent;
 use App\Models\ForStudent;
 use App\Models\ForTeacher;
+use App\Models\Lesson;
 use App\ShedulePagePoster;
 use App\User;
 use Illuminate\Http\Request;
@@ -226,5 +227,32 @@ public function allTeachers(){
         ]);
         return redirect()->back()->with('message','E-mail is Approved');
     }
+
+
+    public function studentLesson($id){
+        $lesssonDetail=Lesson::where('id',$id)->get();
+        $url=$lesssonDetail[0]['link'];
+        $data=explode('=',$url);
+        $video=$data[1];
+        foreach ($lesssonDetail as $key=>$lesssonDetil){
+            $lesssonDetail[$key]['teacher_fname']=User::where('id',$lesssonDetil['user_id'])->pluck("fname")->first();
+            $lesssonDetail[$key]['teacher_lname']=User::where('id',$lesssonDetil['user_id'])->pluck("lname")->first();
+            $lesssonDetail[$key]['teacher_thumbnail']=User::where('id',$lesssonDetil['user_id'])->pluck("thumbnail")->first();
+            $lesssonDetail[$key]['video']=$video;
+
+        }
+//        dd($lesssonDetail);
+        return view('frontend.pages.students.student-lesson-page',compact('lesssonDetail'));
+    }
+
+
+
+
+    public function teacherProfile($id){
+$user=User::where('id',$id)->get();
+//dd($user[0]['thumbnail']);
+        return view('frontend.pages.teachers.teacher-profile',compact('user'));
+    }
+
 
 }

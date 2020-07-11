@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Lesson;
 use App\Models\Student;
 use App\Models\Subject;
+use App\Models\SubjectLevelDetail;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,20 +17,14 @@ public function selectSubjects(Request $request){
     $user_id=$request['user_id'];
 
     $level=$request->level;
-$subjects=Subject::where('level_id',$level)->get();
-$count=    $subjects->count();
-if ($count>8){
-    for($i = 0; $i < 8; $i++){
-        $key['subjects'][] = $subjects[$i];
-    }
-    for($i = 8; $i < $count; $i++){
-        $key['others'][] = $subjects[$i];
-    }
-}else{
-    $key['subjects'] = $subjects;
-}
+$subjects=SubjectLevelDetail::where('level_id',$level)->get();
+foreach ($subjects as $key=>$sub){
+$subjects[$key]['name']=Subject::where('id',$sub['subject_id'])->pluck('name')->first();
+$subjects[$key]['level_id']=$request->level;;
 
-return view('auth.students.student-subject',compact('key','count','user_id'));
+};
+
+return view('auth.students.student-subject',compact('subjects','user_id'));
 }
 
 public function saveNewSubject(Request $request){
@@ -48,33 +44,39 @@ $user_id=$request['user_id'];
 
 
 public function getSubjects(Request $request){
-
-    $sub=implode(',',$request->subjects);
-    $user_id=$request['user_id'];
-    $createSubjects=User::where('id',$user_id)->update([
-        'subject_id' => $sub,
-    ]);
-
+//dd($request);
+    $user_id= $request->user_id;
+    $allSubjects=Subject::all();
+    foreach($request->subjects as $subject) {
+        $createSubjects = SubjectLevelDetail::create([
+            'user_id' => $request->user_id,
+            'subject_id' => $subject,
+            'level_id' => $request->level_id,
+        ]);
+    }
+//    dd($createSubjects);
 
     if ($createSubjects){
-        return view('auth.students.student-profile',compact('user_id'));
+        return view('auth.students.student-profile',compact('user_id','allSubjects'));
     }
-return redirect()->back();
+
 
 }
 public function getProfile(Request $request){
 
-
+//dd($request);
     if ($request->hasFile('thumbnail')) {
         $image = $request->file('thumbnail');
         $imageName = time() . "." . $image->extension();
-        $imagePath = public_path() . '/storage';
+        $imagePath = public_path() . '/storage/images';
         $image->move($imagePath, $imageName);
         $imageDbPath = $imageName;
     }
     $Data=User::where('id',$request['user_id'])->update([
         'Description'=>$request['Description'],
         'country'=>$request['country'],
+        'favorite_subject'=>$request['favourit_subjects'],
+        'fof_session'=>$request['fof_session'],
         'thumbnail'=>$imageDbPath,
     ]);
     return redirect()->route('studentHome');
@@ -92,6 +94,15 @@ public function studentLessson(){
 
         return view('frontend.pages.students.student-home');
     }
+
+
+public function addToCalender($id){
+    $data=Lesson::where('id',$id)->get();
+
+return redirect()->back()->with('message','added to your calender successfully');
+
+}
+
 
 
 

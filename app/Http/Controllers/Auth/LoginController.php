@@ -38,7 +38,7 @@ class LoginController extends Controller
             return redirect()->route('home');
         }
         if(auth::user()['type'] == 'teacher'){
-            return redirect('/');
+            return redirect()->route('teacherHome');
         }
         if(auth::user()['type'] == 'student'){
             return redirect()->route('studentHome');

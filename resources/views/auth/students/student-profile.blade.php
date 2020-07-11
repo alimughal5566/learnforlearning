@@ -57,31 +57,26 @@
 
                                         <select class="mdb-select" name="country"  searchable="Search here..">
                                             <option value="" disabled selected>Country</option>
-                                            <option value="1">USA</option>
-                                            <option value="2">Germany</option>
-                                            <option value="3">France</option>
-                                            <option value="3">Poland</option>
-                                            <option value="3">Japan</option>
+                                            <option value="USA">USA</option>
+                                            <option value="Germany">Germany</option>
+                                            <option value="France">France</option>
+                                            <option value="Poland">Poland</option>
+                                            <option value="Japan">Japan</option>
                                         </select>
                                     </div>
                                     <div style="width:100%;">
                                         <select class="mdb-select" name="favourit_subjects"  searchable="Search here..">
                                             <option value="" disabled selected>My Favourite Subjects</option>
-                                            <option value="1">USA</option>
-                                            <option value="2">Germany</option>
-                                            <option value="3">France</option>
-                                            <option value="3">Poland</option>
-                                            <option value="3">Japan</option>
+                                            @foreach($allSubjects as $sub)
+                                            <option value="{{$sub->id}}">{{$sub->name}}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                     <div style="width:100%;">
-                                        <select class="mdb-select" name="need_help" searchable="Search here..">
-                                            <option value="" disabled selected>I Need Help With</option>
-                                            <option value="1">USA</option>
-                                            <option value="2">Germany</option>
-                                            <option value="3">France</option>
-                                            <option value="3">Poland</option>
-                                            <option value="3">Japan</option>
+                                        <select class="mdb-select" name="fof_session" searchable="Search here..">
+                                            <option value="" disabled selected>Available for 1:1</option>
+                                            <option value="1">Yes</option>
+                                            <option value="0">NO</option>
                                         </select>
                                     </div>
                                     <button type="submit" class="btn btn-primary active" >SAVE</button>

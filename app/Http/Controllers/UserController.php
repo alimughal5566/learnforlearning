@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateUserRequest;
+use App\Models\Lesson;
 use App\Models\levels;
 use App\Models\Student;
 use App\Models\Subject;
@@ -49,29 +50,26 @@ class UserController extends Controller
         $response=$this->user->addUser($request);
         $user_id=$response['id'];
         $level=levels::all();
-        $subjects=Student::all();
+        $subjects=Subject::all();
 
         if($response['type']=='teacher'){
-
-
-
-//            $user_id=$request['user_id'];
-
-            $level=$request->level;
-            $subjects=Subject::all();
-            $count=    $subjects->count();
-            if ($count>8){
-                for($i = 0; $i < 8; $i++){
-                    $key['subjects'][] = $subjects[$i];
-                }
-                for($i = 8; $i < $count; $i++){
-                    $key['others'][] = $subjects[$i];
-                }
-            }else{
-                $key['subjects'] = $subjects;
-            }
-//dd($user_id);
-                    return view('auth.teachers.teacher-subjects',compact('key','count','user_id'));
+//
+////            $user_id=$request['user_id'];
+//            $level=$request->level;
+//            $subjects=Subject::all();
+//            $count=    $subjects->count();
+//            if ($count>8){
+//                for($i = 0; $i < 8; $i++){
+//                    $key['subjects'][] = $subjects[$i];
+//                }
+//                for($i = 8; $i < $count; $i++){
+//                    $key['others'][] = $subjects[$i];
+//                }
+//            }else{
+//                $key['subjects'] = $subjects;
+//            }
+////dd($user_id);
+                    return view('auth.teachers.teacher-subjects',compact('subjects','user_id'));
             }else{
                 return view('auth.students.student-level',compact('level','user_id'));
 
@@ -88,7 +86,18 @@ class UserController extends Controller
 
 
 
+    public function homePage(){
+        $lesson=Lesson::all();
 
+        foreach ($lesson as $key=>$leson){
+            $lesson[$key]['Subject_name']=Subject::where('id',$leson['subject_id'])->pluck("name")->first();
+            $lesson[$key]['teacher_fname']=User::where('id',$leson['user_id'])->pluck("fname")->first();
+            $lesson[$key]['teacher_lname']=User::where('id',$leson['user_id'])->pluck("lname")->first();
+            $lesson[$key]['teacher_thumbnail']=User::where('id',$leson['user_id'])->pluck("thumbnail")->first();
+        }
+//        dd($lesson);
+        return view('welcome',compact('lesson'));
+    }
 
 
 

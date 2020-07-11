@@ -4,6 +4,21 @@
 <!--====== SEARCH BOX PART START ======-->
 @section('content')
     <link rel="stylesheet" href="{{asset('asset/css/responsive/home-responsive.css')}}">
+    <style>
+        .card-img-overlay {
+            background-color: rgba(#000, 0.4);
+        }
+
+        .main-slider-btn2 {
+            background-color: #ffc10e;
+        }
+
+        div#donate-register-btn-div {
+            display: flex;
+            padding-bottom: 20px;
+            padding-top: 20px;
+        }
+    </style>
 
     <div class="search-box">
         <div class="search-form">
@@ -271,217 +286,56 @@
                 </div>
             </div> <!-- row -->
             <div class="row">
-                <div class="col-lg-4">
-                    <div class="single-course-2 mt-30">
-                        <div class="thum">
-                            <div class="image">
-                                <img src="{{asset('asset/images/course/cu-1.jpg')}}" alt="Course">
-                            </div>
-                            <div class="price">
-                                <span>Free</span>
-                            </div>
-                            <div class="course-teacher d-flex align-items-center">
+                @foreach($lesson as $leson)
+                        <div class="col-lg-4">
+                            <div class="single-course-2 mt-30">
                                 <div class="thum">
-                                    <a href="courses-single.html"><img src="{{asset('asset/images/course/teacher/t-1.jpg')}}" alt="teacher"></a>
-                                </div>
-                                <div class="teacher ml-10">
-                                    <div class="name">
-                                        <a href="#"><h6>Mark anthem</h6></a>
+                                    <div class="price">
+                                        <span><a href="{{route('teacherProfile',[$leson->user_id])}}"><img src="{{url('/storage/images/'.$leson->teacher_thumbnail)}}"></a></span>
                                     </div>
-                                    <div class="review">
-                                        <ul>
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star"></i></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="cont">
-                            <a data-animation="fadeInUp" data-delay="2s" class="main-slider-btn" href="#" style="background: #818181;color: white;font-weight: 500;display: block;">I AM A STUDENT/PARENT</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <a data-animation="fadeInUp" data-delay="2s" class="main-slider-btn" href="#" style="background: #7acdf0;color: white;font-weight: 500;display: block;">ADD TO CALENDAR</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        </div>
-                    </div> <!-- single course -->
-                </div>
-                <div class="col-lg-4">
-                    <div class="single-course-2 mt-30">
-                        <div class="thum">
-                            <div class="image">
-                                <img src="{{asset('asset/images/course/cu-2.jpg')}}" alt="Course">
-                            </div>
-                            <div class="price">
-                                <span>Free</span>
-                            </div>
-                            <div class="course-teacher d-flex align-items-center">
-                                <div class="thum">
-                                    <a href="courses-single.html"><img src="{{asset('asset/images/course/teacher/t-2.jpg')}}" alt="teacher"></a>
-                                </div>
-                                <div class="teacher ml-10">
-                                    <div class="name">
-                                        <a href="#"><h6>Mark anthem</h6></a>
-                                    </div>
-                                    <div class="review">
-                                        <ul>
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star"></i></li>
-                                        </ul>
+                                    <div class="card">
+                                        <img src="{{url('/storage/images/'.$leson->thumbnail)}}">
+                                        <div class="card-img-overlay text-white d-flex flex-column justify-content-center">
+                                            <h4 class="card-title">{{$leson->Subject_name}}</h4>
+                                            <a href="{{route('studentLesson',[$leson->id])}}">
+                                            <h6 class="card-subtitle mb-2">{{$leson->title}}</h6>
+                                            </a>
+                                            <hr>
+                                            <div class="link d-flex">
+                                            </div>
+                                            <div class="row" id="rating-date-lesson">
+                                                <div class="col-6"><h4 class="card-title">{{$leson->date}}<br>
+                                                        {{$leson->time}}</h4>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="review">
+                                                        <ul>
+                                                            <li><i class="fa fa-star"></i></li>
+                                                            <li><i class="fa fa-star"></i></li>
+                                                            <li><i class="fa fa-star"></i></li>
+                                                            <li><i class="fa fa-star"></i></li>
+                                                            <li><i class="fa fa-star"></i></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="cont">
-                            <a data-animation="fadeInUp" data-delay="2s" class="main-slider-btn" href="#" style="background: #818181;color: white;font-weight: 500;display: block;">I AM A STUDENT/PARENT</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <a data-animation="fadeInUp" data-delay="2s" class="main-slider-btn" href="#" style="background: #7acdf0;color: white;font-weight: 500;display: block;">ADD TO CALENDAR</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        </div>
-                    </div> <!-- single course -->
-                </div>
-                <div class="col-lg-4">
-                    <div class="single-course-2 mt-30">
-                        <div class="thum">
-                            <div class="image">
-                                <img src="{{asset('asset/images/course/cu-3.jpg')}}" alt="Course">
-                            </div>
-                            <div class="price">
-                                <span>Free</span>
-                            </div>
-                            <div class="course-teacher d-flex align-items-center">
-                                <div class="thum">
-                                    <a href="courses-single.html"><img src="{{asset('asset/images/course/teacher/t-3.jpg')}}" alt="teacher"></a>
+                                <div class="cont">
+                                    @if(Auth::check())
+                                        <a data-animation="fadeInUp" data-delay="2s" class="main-slider-btn" href="{{route('addToCalender',[$leson->id])}}" style="background: #7acdf0;color: white;font-weight: 500;display: block;">ADD TO CALENDAR</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    @endif
+                                    @if(!Auth::check())
+{{--                                        <a data-animation="fadeInUp" data-delay="2s" class="main-slider-btn" href="{{route('addToCalender'.$leson['id'])}}" style="background: #7acdf0;color: white;font-weight: 500;display: block;">ADD TO CALENDAR</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--}}
+                                        <a data-animation="fadeInUp" data-delay="2s" class="main-slider-btn" href="{{ route('login') }}" style="background: #818181;color: white;font-weight: 500;display: block;">I AM A STUDENT/PARENT</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    @endif
                                 </div>
-                                <div class="teacher ml-10">
-                                    <div class="name">
-                                        <a href="#"><h6>Mark anthem</h6></a>
-                                    </div>
-                                    <div class="review">
-                                        <ul>
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star"></i></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
+                            </div> <!-- single course -->
                         </div>
-                        <div class="cont">
-                            <a data-animation="fadeInUp" data-delay="2s" class="main-slider-btn" href="#" style="background: #818181;color: white;font-weight: 500;display: block;">I AM A STUDENT/PARENT</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <a data-animation="fadeInUp" data-delay="2s" class="main-slider-btn" href="#" style="background: #7acdf0;color: white;font-weight: 500;display: block;">ADD TO CALENDAR</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        </div>
-                    </div> <!-- single course -->
-                </div>
-                <div class="col-lg-4">
-                    <div class="single-course-2 mt-30">
-                        <div class="thum">
-                            <div class="image">
-                                <img src="{{asset('asset/images/course/cu-4.jpg')}}" alt="Course">
-                            </div>
-                            <div class="price">
-                                <span>Free</span>
-                            </div>
-                            <div class="course-teacher d-flex align-items-center">
-                                <div class="thum">
-                                    <a href="courses-single.html"><img src="{{asset('asset/images/course/teacher/t-4.jpg')}}" alt="teacher"></a>
-                                </div>
-                                <div class="teacher ml-10">
-                                    <div class="name">
-                                        <a href="#"><h6>Mark anthem</h6></a>
-                                    </div>
-                                    <div class="review">
-                                        <ul>
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star"></i></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="cont">
-                            <a data-animation="fadeInUp" data-delay="2s" class="main-slider-btn" href="#" style="background: #818181;color: white;font-weight: 500;display: block;">I AM A STUDENT/PARENT</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <a data-animation="fadeInUp" data-delay="2s" class="main-slider-btn" href="#" style="background: #7acdf0;color: white;font-weight: 500;display: block;">ADD TO CALENDAR</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        </div>
-                    </div> <!-- single course -->
-                </div>
-                <div class="col-lg-4">
-                    <div class="single-course-2 mt-30">
-                        <div class="thum">
-                            <div class="image">
-                                <img src="{{asset('asset/images/course/cu-5.jpg')}}" alt="Course">
-                            </div>
-                            <div class="price">
-                                <span>Free</span>
-                            </div>
-                            <div class="course-teacher d-flex align-items-center">
-                                <div class="thum">
-                                    <a href="courses-single.html"><img src="{{asset('asset/images/course/teacher/t-5.jpg')}}" alt="teacher"></a>
-                                </div>
-                                <div class="teacher ml-10">
-                                    <div class="name">
-                                        <a href="#"><h6>Mark anthem</h6></a>
-                                    </div>
-                                    <div class="review">
-                                        <ul>
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star"></i></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="cont">
-                            <a data-animation="fadeInUp" data-delay="2s" class="main-slider-btn" href="#" style="background: #818181;color: white;font-weight: 500;display: block;">I AM A STUDENT/PARENT</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <a data-animation="fadeInUp" data-delay="2s" class="main-slider-btn" href="#" style="background: #7acdf0;color: white;font-weight: 500;display: block;">ADD TO CALENDAR</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        </div>
-                    </div> <!-- single course -->
-                </div>
-                <div class="col-lg-4">
-                    <div class="single-course-2 mt-30">
-                        <div class="thum">
-                            <div class="image">
-                                <img src="{{asset('asset/images/course/cu-2.jpg')}}" alt="Course">
-                            </div>
-                            <div class="price">
-                                <span>Free</span>
-                            </div>
-                            <div class="course-teacher d-flex align-items-center">
-                                <div class="thum">
-                                    <a href="courses-single.html"><img src="{{asset('asset/images/course/teacher/t-2.jpg')}}" alt="teacher"></a>
-                                </div>
-                                <div class="teacher ml-10">
-                                    <div class="name">
-                                        <a href="#"><h6>Mark anthem</h6></a>
-                                    </div>
-                                    <div class="review">
-                                        <ul>
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star"></i></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="cont">
-                            <a data-animation="fadeInUp" data-delay="2s" class="main-slider-btn" href="#" style="background: #818181;color: white;font-weight: 500;display: block;">I AM A STUDENT/PARENT</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <a data-animation="fadeInUp" data-delay="2s" class="main-slider-btn" href="#" style="background: #7acdf0;color: white;font-weight: 500;display: block;">ADD TO CALENDAR</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        </div>
-                    </div> <!-- single course -->
-                </div>
+                @endforeach
             </div> <!-- course slide -->
         </div> <!-- container -->
     </section>
+
 @endsection

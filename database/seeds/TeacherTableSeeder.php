@@ -13,14 +13,13 @@ class TeacherTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('teschers')->insert([
+        DB::table('teachers')->insert([
 
-            'user_id' => '2',
-            'subject' => 'admin',
-            'level' => 'admin@gmial.com',
-            'profession' =>Carbon::now(),
-            'online_session' => '03001234567',
-            'discription' => 'admin',
+            'id' => 1,
+            'user_id' => 2,
+            'Education' => 'Masters',
+            'taught_level' => 'Heigher',
+            'marketing_preference' =>true,
             'created_at' =>Carbon::now(),
             'updated_at' =>Carbon::now(),
         ]);

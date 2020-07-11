@@ -18,8 +18,8 @@ class CreateUsersTable extends Migration
             $table->string('fname',50)->nullable();
             $table->string('lname',50)->nullable();
             $table->string('thumbnail',50)->nullable();
-            $table->string('subject_id')->nullable();
-//            $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade');
+            $table->unsignedBigInteger('favorite_subject')->nullable();
+            $table->foreign('favorite_subject')->references('id')->on('subjects')->onDelete('cascade');
             $table->string('email',60)->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('user_contact',15)->nullable();
